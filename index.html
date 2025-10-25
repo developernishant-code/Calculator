@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: lightsalmon;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .main {
+            height: 500px;
+            width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px auto;
+            background-color: white;
+            border: 1px double red;
+        }
+
+        #output {
+            width: 1300px;
+            height: 200px;
+            margin: 30px 30px;
+            box-shadow: rgba(177, 171, 134, 0.45) 0px 5px 15px;
+            border-radius: 8px;
+        }
+
+        .outputin {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .buttons {
+            width: 1000px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .sel-btn {
+            width: 150px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: rgba(177, 171, 134, 0.45) 0px 5px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #output {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calculator</h1>
+    <div class="main">
+        <div class="buttons">
+            <div class="sel-btn" onclick="bmicalc()">BMI</div>
+            <div class="sel-btn" onclick="interest()">Interest</div>
+            <div class="sel-btn" onclick="caloriescalc()">Calories</div>
+        </div>
+        <div id="output"></div>
+    </div>
+</body>
+<script>
+    let outputElement = document.getElementById("output");
+
+    function interest() {
+        let principalam = Number(prompt("Enter principal amount : "))
+        let Time = Number(prompt("Enter time (In Years) amount : "))
+        let ROT = Number(prompt("Enter rate of intrest amount : "))
+
+        let SI = (principalam * Time * ROT / 100)
+        let total = principalam + SI
+
+        outputElement.innerHTML = `<h1>YOUR INTREST AMOUNT IS ${SI} and TOTAL AMOUNT WILL BE ${total}</h1>`
+    }
+
+    function bmicalc() {
+        let weight = Number(prompt("Enter your weight (In kg) : "));
+        let height = Number(prompt("Enter your height (In m) : "));
+
+        height = height ** 2
+
+        let Bmi = weight / height
+
+        outputElement.innerHTML = `<h1>Your Bmi is ${Bmi} </h1`
+    }
+
+    function caloriescalc() {
+        let gender = prompt("Enter your gender : ");
+        let weight = Number(prompt("Enter your weight (In kg) : "));
+        let height = Number(prompt("Enter your height (In cm) : "));
+        let age = Number(prompt("Enter your Age (In years) : "));
+
+        let calories = 66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * age);
+        if (gender == "male" || gender == "Male") {
+            outputElement.innerHTML = `<h1>Your Calories is ${calories}</h1>`
+        }
+
+        else if (gender == "female" || gender == "Female") {
+            let femalecal = 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age)
+            outputElement.innerHTML = `<h1>Your Calories is ${femalecal}</h1>`
+        }
+    }
+</script>
